@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Header</title>
+    <link rel="stylesheet" href="ASCENDtials_header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="nav-container">
+        <nav>
+            <div class="logo">
+                <img src="assets/img/Logo.png" alt="Logo">
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <!-- SVG Path for the Burger Menu -->
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 7h24M3 15h24M3 23h24" stroke="var(--nav-color)" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <ul class="menu">
+                <li><a href="https://ascendtials.org">Home</a></li>
+                <li><a href="https://ascendtials.org/ascendtials-membership-2024/">Membership</a></li>
+                <li class="has-dropdown">
+                    <a href="#">About<i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="https://ascendtials.org/about-us-2024/">About Us</a></li>
+                        <li><a href="https://ascendtials.org/the-team/">Our Team</a></li>
+                        <li><a href="https://ascendtials.org/contact-us/">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Education <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="https://ascendtials.org/education-and-training-2024/">Education and Training</a></li>
+                        <li><a href="https://ascendtials.org/literacy-workshops-2024/">Literacy Workshops</a></li>
+                        <li><a href="https://ascendtials.org/kemetic-yoga-2024/">Kemetic Yoga</a></li>
+                        <li><a href="https://ascendtials.org/designing-from-whiteness-to-oneness-2024/">Whiteness To Oneness™</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Programs <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="https://ascendtials.org/events/">Event Calendar</a></li>
+                        <li><a href="https://ascendtials.org/experiential-and-service-learning-programs-2024/">Service Learning</a></li>
+                        <li><a href="https://ascendtials.org/youth-programs-2024/">Youth Programs</a></li>
+                        <li><a href="https://ascendtials.org/environmental-programs-2024/">Environmental Programs</a></li>
+                        <li><a href="https://ascendtials.org/legal-aid-program-2024/">Legal Aid Programs</a></li>
+                        <li><a href="https://ascendtials.org/fellowship-program-2024/">Internships and Fellowships Programs</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Clubs <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="https://ascendtials.org/get-involved/">Blog</a></li>
+                        <li><a href="https://ascendtials.org/volunteer/">Newsletter</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="#">Join Us <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="https://ascendtials.org/get-involved/">Partner with Us</a></li>
+                        <li><a href="https://ascendtials.org/volunteer/">Internship / Volunteer</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <button class="support-btn">Support Us</button>
+        </nav>
+    </header>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+            const menu = document.querySelector('.menu');
+            const dropdownToggles = document.querySelectorAll('.has-dropdown > a');
+
+            function mobileNavToggle() {
+                // Toggle the menu active class
+                menu.classList.toggle('active');
+                document.body.classList.toggle('mobile-nav-active');
+
+                // Change the toggle button icon
+                if (menu.classList.contains('active')) {
+                    mobileNavToggleBtn.innerHTML = '<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h24M3 15h24M3 23h24" stroke="var(--nav-color)" stroke-width="3" stroke-linecap="round"/></svg>';
+                } else {
+                    mobileNavToggleBtn.innerHTML = '<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h24M3 15h24M3 23h24" stroke="var(--nav-color)" stroke-width="3" stroke-linecap="round"/></svg>';
+                }
+            }
+
+            mobileNavToggleBtn.addEventListener('click', mobileNavToggle);
+
+            // Handle dropdown menu toggling
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 1199) {
+                        e.preventDefault();
+                        const dropdown = this.nextElementSibling;
+                        const isActive = dropdown.classList.contains('active');
+
+                        // Close all other dropdowns
+                        dropdownToggles.forEach(otherToggle => {
+                            if (otherToggle !== this) {
+                                otherToggle.nextElementSibling.classList.remove('active');
+                                otherToggle.querySelector('i').classList.remove('fa-chevron-up');
+                                otherToggle.querySelector('i').classList.add('fa-chevron-down');
+                            }
+                        });
+
+                        // Toggle current dropdown
+                        dropdown.classList.toggle('active', !isActive);
+                        this.querySelector('i').classList.toggle('fa-chevron-up', !isActive);
+                        this.querySelector('i').classList.toggle('fa-chevron-down', isActive);
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!menu.contains(e.target) && !mobileNavToggleBtn.contains(e.target)) {
+                    menu.classList.remove('active');
+                    document.body.classList.remove('mobile-nav-active');
+                    mobileNavToggleBtn.innerHTML = '<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h24M3 15h24M3 23h24" stroke="var(--nav-color)" stroke-width="3" stroke-linecap="round"/></svg>';
+                }
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1199) {
+                    menu.classList.remove('active');
+                    document.body.classList.remove('mobile-nav-active');
+                    mobileNavToggleBtn.innerHTML = '<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7h24M3 15h24M3 23h24" stroke="var(--nav-color)" stroke-width="3" stroke-linecap="round"/></svg>';
+                }
+            });
+        })();
+    </script>
+
+    <style>
+        @font-face {
+            font-family: 'Amoret Sans';
+            src: url('assets/font/amoret-sans.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --nav-color: #274353;
+            --nav-dropdown-background-color: #F5F5F5;
+            --nav-dropdown-color: #274353;
+            --nav-dropdown-hover-color: #3CA8E6;
+            --accent-color: #3CA8E6;
+            --contrast-color: #F5F5F5;
+            --nav-font: 'Amoret Sans', sans-serif;
+            --dropdown-font: 'Noto Sans', sans-serif;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: var(--nav-font);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .nav-container {
+            background-color: var(--nav-dropdown-background-color);
+            padding: 0 30px;
+            position: relative;
+            z-index: 1000;
+            height: 100px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        .logo img {
+            max-height: 80px;
+            width: auto;
+        }
+
+        .menu {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            position: relative;
+            margin-right: 16px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            text-decoration: none;
+            color: var(--nav-color);
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .menu a:hover, .menu a.active {
+            color: var(--nav-dropdown-hover-color);
+        }
+
+        .menu .has-dropdown > a {
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .menu .has-dropdown > a::after {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            width: 10px;
+            height: 10px;
+            border: solid var(--nav-color);
+            border-width: 0 2px 2px 0;
+            transform: translateY(-50%) rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: var(--nav-dropdown-background-color);
+            min-width: 250px;
+            z-index: 1;
+            border-radius: 15px;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        .support-btn {
+            background-color: var(--nav-color);
+            color: var(--contrast-color);
+            border: none;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-family: var(--nav-font);
+            cursor: pointer;
+            border-radius: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .support-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+        }
+
+        @media (max-width: 1199px) {
+            .nav-container {
+                height: auto;
+                padding: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .logo {
+                flex-basis: 33%;
+                order: 1;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+                font-size: 32px; /* Increased size for visibility */
+                background: none;
+                border: none;
+                cursor: pointer;
+                flex-basis: 33%;
+                order: 2;
+                text-align: center;
+            }
+
+            .support-btn {
+                flex-basis: 33%;
+                order: 3;
+                text-align: right;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--nav-dropdown-background-color);
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 9999;
+                order: 4;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu > li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .menu a,
+            .menu a:focus {
+                padding: 10px 20px;
+                font-size: 17px;
+                font-weight: 500;
+                font-family: var(--nav-font);
+            }
+
+            .menu .has-dropdown > a::after {
+                right: 8px; /* Adjusted for mobile */
+            }
+
+            .dropdown {
+                position: static;
+                box-shadow: none;
+                width: 100%;
+                display: none;
+            }
+
+            .dropdown a {
+                font-family: var(--dropdown-font);
+                font-size: 15px;
+                font-weight: normal;
+                padding-left: 30px;
+            }
+
+            .dropdown.active {
+                display: block;
+            }
+        }
+    </style>
+
+</body>
+</html>
